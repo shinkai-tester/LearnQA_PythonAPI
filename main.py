@@ -1,5 +1,5 @@
 import requests
 
-nameParam = {'name': 'Sasha'}
-response = requests.get("https://playground.learnqa.ru/api/hello", params=nameParam)
+payload = {"name": "Sasha"}
+response = requests.get("https://playground.learnqa.ru/api/hello", params=payload)
 print(response.text)
