@@ -13,8 +13,13 @@ for pwd in possiblePasswords:
     payload = {"login": "super_admin", "password": pwd}
     response1 = requests.post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework", data=payload)
     cookie_value = response1.cookies.get('auth_cookie')
-    cookies = {'auth_cookie': cookie_value}
-    response2 = requests.post("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
-    if response2.text != 'You are NOT authorized':
-        print(response2.text)
-        print("The password for the login super_admin is %s" % pwd)
+    cookies = {}
+    if cookie_value is not None:
+        cookies.update({'auth_cookie': cookie_value})
+        response2 = requests.post("https://playground.learnqa.ru/api/check_auth_cookie", cookies=cookies)
+        if response2.text != 'You are NOT authorized':
+            print(response2.text)
+            print("The password for the login super_admin is %s" % pwd)
+            break
+else:
+    print("The password is not found")
