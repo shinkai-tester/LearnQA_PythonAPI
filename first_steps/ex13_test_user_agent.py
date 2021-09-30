@@ -62,11 +62,11 @@ class TestUserAgent:
         assert "device" in response_dict, f"There is no field 'device' in the response " \
                                           f"for the requested User Agent = '{data['useragent']}'"
 
-        actual_platform_ = response_dict["platform"]
+        actual_platform = response_dict["platform"]
         actual_browser = response_dict["browser"]
         actual_device = response_dict["device"]
 
-        assert actual_platform_ == expected_platform, \
+        assert actual_platform == expected_platform, \
             f"The platform with value = '{response_dict['platform']}' " \
             f"is not equal to the expected value = '{data['platform']}'"
         assert actual_browser == expected_browser, \

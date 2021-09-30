@@ -3,6 +3,7 @@ import requests
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
 
+
 class TestUserAuth(BaseCase):
     exclude_params = [
         "no_cookie",
@@ -53,4 +54,3 @@ class TestUserAuth(BaseCase):
             0,
             f"User is authorized with condition {condition}"
         )
-
