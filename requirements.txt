@@ -1,3 +1,4 @@
 allure-pytest
-requests
-pytest
+requests~=2.26.0
+pytest~=6.2.5
+Faker~=8.14.0
