@@ -1,6 +1,7 @@
 from requests import Response
 import json
 
+
 class Assertions:
     @staticmethod
     def assert_json_value_by_name(response: Response, name, expected_value, error_message):
