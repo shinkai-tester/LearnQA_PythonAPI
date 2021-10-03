@@ -12,7 +12,7 @@ pip3 install -r requirements.txt
 ## Run the tests
 To run the tests from the terminal under the project path, use the following command:
 ```
-python -m pytest --alluredir=test_results/ tests/
+python -m pytest -s --alluredir=test_results/ tests/
 ```
 ## Allure report
 To generate the report, use the command:
