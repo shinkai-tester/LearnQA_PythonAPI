@@ -7,10 +7,10 @@ class TestUserGet(BaseCase):
     def test_get_user_details_not_auth(self):
         response = MyRequests.get("/user/2")
 
+        missing_keys = ["email", "firstName", "lastName"]
+
         Assertions.assert_json_has_key(response, "username")
-        Assertions.assert_json_has_no_key(response, "email")
-        Assertions.assert_json_has_no_key(response, "firstName")
-        Assertions.assert_json_has_no_key(response, "lastName")
+        Assertions.assert_json_has_no_keys(response, missing_keys)
 
     def test_get_user_details_auth_as_same_user(self):
         data = {
@@ -75,7 +75,10 @@ class TestUserGet(BaseCase):
                                    cookies={"auth_sid": auth_sid}
                                    )
 
+        missing_keys = ["email", "firstName", "lastName"]
+
         Assertions.assert_json_has_key(response4, "username")
+        Assertions.assert_json_has_no_keys(response4, missing_keys)
         Assertions.assert_json_value_by_name(response4, "username", user2_username,
                                              f"The username value of the user with id={user2_id} is wrong!"
                                              f"\nExpected: {user2_username}\n"
