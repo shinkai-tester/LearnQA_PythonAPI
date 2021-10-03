@@ -1,10 +1,10 @@
 import os
-import datetime
+from datetime import datetime, timezone
 from requests import Response
 
 
 class Logger:
-    filename = f"logs/log-" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".log"
+    filename = f"logs/log-" + datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d_%H-%M-%S") + ".log"
 
     @classmethod
     def _write_log_to_file(cls, data: str):
@@ -17,7 +17,7 @@ class Logger:
 
         data_to_add = f"\n===========================================\n"
         data_to_add += f"Test {testname}\n"
-        data_to_add += f"Time: {str(datetime.datetime.now())}\n"
+        data_to_add += f"Time: {str(datetime.now(timezone.utc).astimezone())}\n"
         data_to_add += f"Request method: {method}\n"
         data_to_add += f"Request URL: {url}\n"
         data_to_add += f"Request data: {data}\n"
