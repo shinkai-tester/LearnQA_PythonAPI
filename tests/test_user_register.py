@@ -108,7 +108,6 @@ class TestUserRegister(BaseCase):
         with allure.step("Prepare user data with firstName > 250 symbols"):
             data = self.prepare_registration_data()
             data['firstName'] = ''.join(random.choices(string.ascii_lowercase, k=251))
-            print(data['firstName'])
 
         with allure.step("Try to register user"):
             response = MyRequests.post("/user/", data=data)
