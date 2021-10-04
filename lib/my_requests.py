@@ -36,8 +36,15 @@ class MyRequests:
         Logger.add_request(url, data, headers, cookies, method)
         with allure.step(f"{method} request to URL '{url}'"):
             try:
-                allure.attach(json.dumps(data), name="Request content",
-                              attachment_type=allure.attachment_type.JSON)
+                if data:
+                    allure.attach(json.dumps(data), name="Request content",
+                                  attachment_type=allure.attachment_type.JSON)
+                if cookies:
+                    allure.attach(json.dumps(cookies), name="Request cookies",
+                                  attachment_type=allure.attachment_type.JSON)
+                if headers:
+                    allure.attach(json.dumps(headers), name="Request headers",
+                                  attachment_type=allure.attachment_type.JSON)
             except Exception as ex:
                 print(ex)
 
@@ -53,10 +60,17 @@ class MyRequests:
             raise Exception(f"Bad HTTP method '{method}' was received")
 
         Logger.add_response(response)
-        with allure.step(f"Server response to the sent {method} request"):
+        with allure.step(f"Server response to the sent {method} request => status code {response.status_code}"):
             try:
-                allure.attach(json.dumps(response.json()), name="Response content",
-                              attachment_type=allure.attachment_type.JSON)
+                if response.json():
+                    allure.attach(json.dumps(response.json()), name="Response content",
+                                  attachment_type=allure.attachment_type.JSON)
+                if dict(response.cookies):
+                    allure.attach(json.dumps(dict(response.cookies)), name="Response cookies",
+                                  attachment_type=allure.attachment_type.JSON)
+                if dict(response.headers):
+                    allure.attach(json.dumps(dict(response.headers)), name="Response headers",
+                                  attachment_type=allure.attachment_type.JSON)
             except Exception as ex:
                 print(ex)
 
