@@ -93,11 +93,11 @@ class TestUserDelete(BaseCase):
             Assertions.assert_status_code(deleted_login_response, 400)
             Assertions.assert_response_content(deleted_login_response, "Invalid username/password supplied")
 
-    @allure.story("Deletion by another user")
-    @allure.title("Test deletion of the user by another user")
-    @allure.description("Goal is to check that the user can't delete another user")
+    @allure.story("Deletion by other user")
+    @allure.title("Test deletion of the user by other user")
+    @allure.description("Goal is to check that the user can't delete other user")
     @allure.severity(severity_level="critical")
-    def test_delete_user_as_another_user(self):
+    def test_delete_user_as_other_user(self):
         with allure.step("Register User1 who tries to delete User2"):
             user1 = self.prepare_registration_data()
             register1_response = MyRequests.post("/user/", data=user1)

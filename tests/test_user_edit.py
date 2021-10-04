@@ -216,10 +216,10 @@ class TestUserEdit(BaseCase):
             )
 
     @allure.story("Unsuccessful user update")
-    @allure.title("Test update user's data as another user")
+    @allure.title("Test update user's data as other user")
     @allure.description("Check that authorized User1 can't change the data of User2")
     @allure.severity(severity_level="critical")
-    def test_edit_user_as_another_user(self):
+    def test_edit_user_as_other_user(self):
         with allure.step("Register User1 for auth who will edit data of User2"):
             user1 = self.prepare_registration_data()
             response1 = MyRequests.post("/user/", data=user1)
